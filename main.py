@@ -1,35 +1,39 @@
 import argparse
-from functions import loadFile, sortItems, saveFile
+from functions import loadFile, saveFile, sortItemsByParent, sortItemsByPriority
 
-'''
-#Descripcion
-parser = argparse.ArgumentParser(description='Process some integers.')
+#ARGUMENTS
+#--inputfile pages.csv --childcol layoutId --parentcol parentLayoutId --prioritycol priority --newcoltreeformat True
+parser = argparse.ArgumentParser(description='Given a CSV file with parent-child relationship column, this task sort the rows. Optional it creates a new column with tree format.')
+parser.add_argument('--inputfile', dest='inputFileName', help='Input file name.', type=str, required=True)
+parser.add_argument('--childcol', dest='childColumnName', help='Child column name.', type=str, required=True)
+parser.add_argument('--parentcol', dest='parentColumnName', help='Parent column name.', type=str, required=True)
+parser.add_argument('--parentrootid', dest='parentRootId', help='Parent root ID.', type=int, required=False, default=0)
+parser.add_argument('--prioritycol', dest='priorityColumnName', help='Priority column name.', type=str, required=False, default='')
+parser.add_argument('--newcoltreeformat', dest='newColumnTreeFormat', help='New column with tree format.', type=bool, required=False, default=False)
+parser.add_argument('--outputfile', dest='outputFileName', help='Output file name.', type=str, required=False, default='')
 
-parser.add_argument('integers', metavar='N', type=int, nargs='+',
-                   help='an integer for the accumulator')
-
-parser.add_argument('--sum', dest='accumulate', action='store_const',
-                   const=sum, default=max,
-                   help='sum the integers (default: find the max)')
-
+# PARAMS
 args = parser.parse_args()
-print(args)
-print(args.accumulate(args.integers))
-exit()
-'''
+inputFileName = args.inputFileName
+childColumnName = args.childColumnName
+parentColumnName = args.parentColumnName
+parentRootId = args.parentRootId
+priorityColumnName = args.priorityColumnName
+newColumnTreeFormat = args.newColumnTreeFormat
+outputFileName = args.outputFileName
 
-#REQUIRED
-inputFileName = "pages.csv"
-childColumnName = "layoutId"
-parentColumnName = "parentLayoutId"
+if not outputFileName:
+    outputFileName = inputFileName.replace(".csv", "_sorted.csv")
 
-#OPTIONAL
-parentRootId = 0 #default 0
-priorityColumnName = "priority" #default empty equals 'not sorted'
-newColumnTreeFormat = False
-outputFileName = inputFileName.replace(".csv", "_sorted.csv")
+print("inputFileName=" + inputFileName + ", childColumnName=" + childColumnName + 
+    ", parentColumnName=" + parentColumnName + ", parentRootId=" + str(parentRootId) + 
+    ", priorityColumnName=" + priorityColumnName + ", newColumnTreeFormat=" + str(newColumnTreeFormat) + 
+    ", outputFileName=" + outputFileName)
 
-#Execute
+#EXECUTE
 header, items = loadFile(inputFileName)
-itemsSorted = sortItems(parentRootId, childColumnName, parentColumnName, priorityColumnName, items, 0)
+itemsSorted = sortItemsByParent(parentRootId, childColumnName, parentColumnName, items, 0)
+if priorityColumnName:
+    itemsSorted = sortItemsByPriority(priorityColumnName, itemsSorted)
+
 saveFile(outputFileName, itemsSorted)

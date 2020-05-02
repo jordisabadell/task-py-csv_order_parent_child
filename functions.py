@@ -24,26 +24,29 @@ def loadFile(fileName):
     
     return header, items
 
-def sortItems(id, fieldNameId, fieldNameParentId, priorityColumnName, items, depth):
+def sortItemsByParent(parentRootId, childColumnName, parentColumnName, items, depth):
 
     result = []
 
-    print("Analysing "+ fieldNameId +" = "+ str(id) +" / depth="+ str(depth) +"...")
+    print("Analysing "+ childColumnName +" = "+ str(parentRootId) +" / depth="+ str(depth) +"...")
     for item in items:
-        if int(item[fieldNameParentId]) == int(id):
+        if int(item[parentColumnName]) == int(parentRootId):
             
-            print(fieldNameParentId +" = "+ str(item[fieldNameId]) +"...")            
+            print(parentColumnName +" = "+ str(item[childColumnName]) +"...")            
             
             #append parent to result
             result.append(item)
 
             #explore childs
-            childs = sortItems(item[fieldNameId], fieldNameId, fieldNameParentId, priorityColumnName, items, depth+1)
+            childs = sortItemsByParent(item[childColumnName], childColumnName, parentColumnName, items, depth+1)
             if childs:
                 for child in childs:
                     result.append(child)
 
     return result
+
+def sortItemsByPriority(priorityColumnName, items):
+    return items
 
 def saveFile(fileName, items):
 
