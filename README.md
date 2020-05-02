@@ -11,29 +11,29 @@ Given a CSV file with parent-child relationship column, this task sort the rows.
 
 ### Input file
 
-| Child ID | Parent ID | Col X      | Col Y    | Col Z      | Priority   |
-|----------|-----------|------------|----------|------------|------------|
-| 1        | 3         | Lorem      | Ipsum    | dolor      | 0          |
-| 2        | 3         | sit        | amet     | consetetur | 1          |
-| 3        | 4         | sadipscing | elitr    | sed        | 0          |
-| 4        | 0         | diam       | nonumy   | eirmod     | 0          |
-| 5        | 1         | tempor     | invidunt | ut         | 0          |
+| Child ID | Parent ID | Priority   | Col X      | Col Y    | Col Z      |
+|----------|-----------|------------|------------|----------|------------|
+| 1        | 3         | 0          | Lorem      | Ipsum    | dolor      |
+| 2        | 3         | 1          | sit        | amet     | consetetur |
+| 3        | 4         | 0          | sadipscing | elitr    | sed        |
+| 4        | 0         | 0          | diam       | nonumy   | eirmod     |
+| 5        | 1         | 0          | tempor     | invidunt | ut         |
 
 ### Output file
 
-| Child ID | Parent ID | Col X      | Col Y    | Col Z      | Priority   | New col       |
+| Child ID | Parent ID | Priority   | Col X      | Col Y    | Col Z      | New col       |
 |----------|-----------|------------|----------|------------|------------|---------------|
-| 4        | 0         | diam       | nonumy   | eirmod     | 0          | diam          |
-| 3        | 4         | sadipscing | elitr    | sed        | 0          | -- sadipscing |
-| 2        | 3         | sit        | amet     | consetetur | 1          | ---- sit      |
-| 1        | 3         | Lorem      | Ipsum    | dolor      | 0          | ---- Lorem    |
-| 5        | 1         | tempor     | invidunt | ut         | 0          | ------ tempor |
+| 4        | 0         | 0          | diam       | nonumy   | eirmod     | diam          |
+| 3        | 4         | 0          | sadipscing | elitr    | sed        | -- sadipscing |
+| 2        | 3         | 1          | sit        | amet     | consetetur | ---- sit      |
+| 1        | 3         | 0          | Lorem      | Ipsum    | dolor      | ---- Lorem    |
+| 5        | 1         | 0          | tempor     | invidunt | ut         | ------ tempor |
 
 ## Arguments
 
 ### Required
 
-- **Input file name**. Especify path if it's not current. Type STRING.
+- **Input file name**. Type STRING. If path is not current path, you must specify it.
 - **Child column name**. Type STRING.
 - **Parent column name**. Type STRNG.
 
