@@ -2,7 +2,6 @@ import argparse
 from functions import loadFile, saveFile, sortItemsByPriority, sortItemsByParent, getHeaderRow
 
 #ARGUMENTS
-#example: py main.py --inputfile c:/tmp/pages.csv --childcol 1 --parentcol 2 --prioritycol 6 --ignoreheaderrow --adddepthcol
 parser = argparse.ArgumentParser(description='Given a CSV file with parent-child relationship column, this task sort the rows. Optional it creates a new column with tree format.')
 parser.add_argument('--inputfile', dest='input_file', 
     help='Input file name.', type=str, required=True)
