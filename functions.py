@@ -2,6 +2,8 @@ import os
 import codecs
 
 def loadFile(fileName, ignoreHeaderRow):
+    '''
+    '''
 
     #read file
     file = open(fileName, "r", encoding="utf8")
@@ -21,7 +23,10 @@ def loadFile(fileName, ignoreHeaderRow):
     
     return items
 
+
 def saveFile(fileName, items):
+    '''
+    '''
 
     #remove file if exists
     if os.path.exists(fileName):
@@ -35,7 +40,10 @@ def saveFile(fileName, items):
 
     return True
 
+
 def sortItemsByPriority(items, parentColumn, priorityColumn):
+    '''
+    '''
     
     #add temporal column with id+priority, order by this and remove this
     for item in items:
@@ -58,8 +66,11 @@ def sortItemsByPriority(items, parentColumn, priorityColumn):
 
     return items
 
+
 def sortItemsByParent(parentRootId, childColumn, parentColumn, 
     addDepthCol, items, depth):
+    '''
+    '''
 
     depth = depth + 1
     result = []
@@ -82,6 +93,10 @@ def sortItemsByParent(parentRootId, childColumn, parentColumn,
     
     return result
 
+
 def getHeaderRow(fileName):
+    '''
+    '''
+    
     file = open(fileName, "r", encoding="utf8")
     return file.readline().replace("\n", "").split("\t")

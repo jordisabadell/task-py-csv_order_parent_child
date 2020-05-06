@@ -8,9 +8,9 @@ parser.add_argument('--inputfile', dest='input_file',
 parser.add_argument('--outputfile', dest='output_file', 
     help='Output file name.', type=str, required=False, default='')
 parser.add_argument('--childcol', dest='child_column', 
-    help='Child column number (default value 0: first column).', type=int, required=True, default=0)
-parser.add_argument('--parentcol', dest='parent_column', default=1, 
-    help='Parent column number (default value 1: second column).', type=int, required=True)
+    help='Child column number (default value 0: first column).', type=int, default=0)
+parser.add_argument('--parentcol', dest='parent_column', 
+    help='Parent column number (default value 1: second column).', type=int, default=1)
 parser.add_argument('--prioritycol', dest='priority_column', 
     help='Priority column number.', type=int, required=False)
 parser.add_argument('--parentrootid', dest='parent_root_id', 

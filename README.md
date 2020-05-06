@@ -1,45 +1,41 @@
 # Python task. Sort CSV file by the parent-child relationship column
 
-Given a CSV file with parent-child relationship column, this task sort the rows. Optional it creates a new column with tree format.
+Given a CSV file with parent-child relationship column, this task sort the rows. Optionaly it creates a new column with the depth tree.
 
-## Format of input file
+## Input file
 
-- Type of file CSV.
-- By defalult separaded with tabulates (you can change it).
-- First row reserved by header.
-- Child and Parent columns are required. Priority and content columns are optional.
+| plid    | layoutId | parentLayoutId | name  | priority |
+|---------|----------|----------------|-------|----------|
+| 7004446 | 74       | 1              | Lorem | 15       |
+| 8152170 | 205      | 1              | Ipsum | 10       |
+| 6724205 | 1        | 0              | Amet  | 0        |
+| 8152195 | 206      | 205            | Dolor | 0        |
+| 8220383 | 222      | 205            | Sit   | 1        |
 
-### Input file
+## Output file
 
-| Child ID | Parent ID | Priority   | Col X      | Col Y    | Col Z      |
-|----------|-----------|------------|------------|----------|------------|
-| 1        | 3         | 0          | Lorem      | Ipsum    | dolor      |
-| 2        | 3         | 1          | sit        | amet     | consetetur |
-| 3        | 4         | 0          | sadipscing | elitr    | sed        |
-| 4        | 0         | 0          | diam       | nonumy   | eirmod     |
-| 5        | 1         | 0          | tempor     | invidunt | ut         |
-
-### Output file
-
-| Child ID | Parent ID | Priority   | Col X      | Col Y    | Col Z      | New col       |
-|----------|-----------|------------|----------|------------|------------|---------------|
-| 4        | 0         | 0          | diam       | nonumy   | eirmod     | diam          |
-| 3        | 4         | 0          | sadipscing | elitr    | sed        | -- sadipscing |
-| 2        | 3         | 1          | sit        | amet     | consetetur | ---- sit      |
-| 1        | 3         | 0          | Lorem      | Ipsum    | dolor      | ---- Lorem    |
-| 5        | 1         | 0          | tempor     | invidunt | ut         | ------ tempor |
+| plid    | layoutId | parentLayoutId | name  | priority | __ auto_generated_depth_col __ |
+|---------|----------|----------------|-------|----------|--------------------------------|
+| 6724205 | 1        | 0              | Amet  | 0        | 0                              |
+| 8152170 | 205      | 1              | Ipsum | 10       | 1                              |
+| 8152195 | 206      | 205            | Dolor | 0        | 2                              |
+| 8220383 | 222      | 205            | Sit   | 1        | 2                              |
+| 7004446 | 74       | 1              | Lorem | 15       | 1                              |
 
 ## Arguments
 
-### Required
+| Argument          | Value   | Requited | Description                                            |
+|-------------------|---------|----------|--------------------------------------------------------|
+| -h, --help        |         | False    | Show help message and exit.                            |
+| --inputfile       | String  | True     | Input file name.                                       |
+| --outputfile      | String  | False    | Output file name.                                      |
+| --childcol        | Integer | False    | Child column number (default value 0: first column).   |
+| --parentcol       | Integer | False    | Parent column number (default value 1: second column). |
+| --prioritycol     | Integer | False    | Priority column number.                                |
+| --parentrootid    | Integer | False    | Parent root ID (default value 0).                      |
+| --ignoreheaderrow |         | False    | Ignore first row (header).                             |
+| --adddepthcol     |         | False    | Add new column with tree depth.                        |
 
-- **Input file name**. Type STRING. If path is not current path, you must specify it.
-- **Child column name**. Type STRING.
-- **Parent column name**. Type STRNG.
+### Example
 
-### Optional
-
-- **Parent root ID**. Type STRING. Default 0.
-- **Priority column name**. Type STRING. Default 'empty' equals not sorted by priority column.
-- **New column with tree format**. Type boolean. Default 'false'.
-- **Output file name**. Type STRING. Default it takes input file name and concatenates '_sorted' before extension.
+> py main.py --inputfile example/pages.csv --childcol 1 --parentcol 2 --prioritycol 4 --ignoreheaderrow --adddepthcol
