@@ -6,13 +6,10 @@ def loadFile(fileName, ignoreHeaderRow):
     #read file
     file = open(fileName, "r", encoding="utf8")
 
-    if ignoreHeaderRow:
-        file.readline()
-
     #iterate lines
     items = []
     for i, line in enumerate(file):
-        if i>0:
+        if (ignoreHeaderRow and i>0) or (not ignoreHeaderRow):
             if line:
                 #convert line to array of elements
                 item = []
