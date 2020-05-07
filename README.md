@@ -49,6 +49,6 @@ select plid, layoutId, parentLayoutId, name, hidden_, friendlyURL, priority from
 | 8220383 | 222      | 205            | Sit   | 1        | 2                              |
 | 7004446 | 74       | 1              | Lorem | 15       | 1                              |
 
-## Improvements
+## Next steps
 
 - Add possibility to indicate CSV delimiter by call parameter.
