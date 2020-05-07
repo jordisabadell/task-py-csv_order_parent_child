@@ -1,6 +1,6 @@
 # Order CSV file by parent-child relationship
 
-Given a CSV file with parent-child relationship column, this task sort the rows. Optionaly it creates a new column with the depth tree.
+Given a CSV file (delimited by tabulates) with parent-child relationship column, this task sort the rows. Optionaly it creates a new column with the depth tree.
 
 I use it, for example, to sort Liferay Layout table content (version CE 6.1).
 

@@ -2,7 +2,7 @@ import argparse
 from functions import loadFile, saveFile, sortItemsByPriority, sortItemsByParent, getHeaderRow
 
 #ARGUMENTS
-parser = argparse.ArgumentParser(description='Given a CSV file with parent-child relationship column, this task sort the rows. Optionaly it creates a new column with the depth tree.')
+parser = argparse.ArgumentParser(description='Given a CSV file (delimited by tabulates) with parent-child relationship column, this task sort the rows. Optionaly it creates a new column with the depth tree.')
 parser.add_argument('--inputfile', dest='input_file', 
     help='Input file name.', type=str, required=True)
 parser.add_argument('--outputfile', dest='output_file', 
