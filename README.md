@@ -5,7 +5,7 @@ Given a CSV file with parent-child relationship column, this task sort the rows.
 I use it, for example, to sort Liferay Layout table content.
 
 ```sql
-select * from lportal.Group_ where name like '%{__site name__}%';  
+select groupId, name from lportal.Group_ where name like '%{__site name__}%';  
 select plid, layoutId, parentLayoutId, name, hidden_, friendlyURL, priority from lportal.Layout where groupId={__group_id__};
 ```
 
@@ -13,7 +13,7 @@ select plid, layoutId, parentLayoutId, name, hidden_, friendlyURL, priority from
 
 | Parameter         | Value   | Requited | Description                                            |
 |-------------------|---------|----------|--------------------------------------------------------|
-| -h, --help        |         | False    | Show help message and exit.                            |
+| --help (or -h)    |         | False    | Show help message and exit.                            |
 | --inputfile       | String  | True     | Input file name.                                       |
 | --outputfile      | String  | False    | Output file name.                                      |
 | --childcol        | Integer | False    | Child column number (default value 0: first column).   |
