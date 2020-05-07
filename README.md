@@ -11,7 +11,7 @@ select plid, layoutId, parentLayoutId, name, hidden_, friendlyURL, priority from
 
 ## Arguments
 
-| Argument          | Type    | Description                     | Requited | Default value     |
+| Parameter         | Type    | Description                     | Required | Default value     |
 |-------------------|---------|---------------------------------|----------|-------------------|
 | --help (or -h)    |         | Show help message and exit      | False    |                   |
 | --inputfile       | String  | Input file name.                | True     |                   |
