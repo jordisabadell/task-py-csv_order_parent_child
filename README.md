@@ -29,7 +29,7 @@ select plid, layoutId, parentLayoutId, name, hidden_, friendlyURL, priority from
 
 > py main.py --inputfile example/pages.csv --childcol 1 --parentcol 2 --prioritycol 4 --ignoreheaderrow --adddepthcol
 
-### Input file example (see /example/pages.csv)
+### Input file example
 
 | plid    | layoutId | parentLayoutId | name  | priority |
 |---------|----------|----------------|-------|----------|
