@@ -2,7 +2,7 @@
 
 Given a CSV file with parent-child relationship column, this task sort the rows. Optionaly it creates a new column with the depth tree.
 
-I use it, for example, to sort Liferay Layout table content.
+I use it, for example, to sort Liferay Layout table content (version CE 6.1).
 
 ```sql
 select groupId, name from lportal.Group_ where name like '%{__site name__}%';  
@@ -11,17 +11,17 @@ select plid, layoutId, parentLayoutId, name, hidden_, friendlyURL, priority from
 
 ## Arguments
 
-| Parameter         | Value   | Requited | Description                                            |
-|-------------------|---------|----------|--------------------------------------------------------|
-| --help (or -h)    |         | False    | Show help message and exit.                            |
-| --inputfile       | String  | True     | Input file name.                                       |
-| --outputfile      | String  | False    | Output file name.                                      |
-| --childcol        | Integer | False    | Child column number (default value 0: first column).   |
-| --parentcol       | Integer | False    | Parent column number (default value 1: second column). |
-| --prioritycol     | Integer | False    | Priority column number.                                |
-| --parentrootid    | Integer | False    | Parent root ID (default value 0).                      |
-| --ignoreheaderrow |         | False    | Ignore first row (header).                             |
-| --adddepthcol     |         | False    | Add new column with tree depth.                        |
+| Argument          | Type    | Description                     | Requited | Default value     |
+|-------------------|---------|---------------------------------|----------|-------------------|
+| --help (or -h)    |         | Show help message and exit      | False    |                   |
+| --inputfile       | String  | Input file name.                | True     |                   |
+| --outputfile      | String  | Output file name.               | False    |                   |
+| --childcol        | Integer | Child column number.            | False    | 0 (first column)  |
+| --parentcol       | Integer | Parent column number.           | False    | 1 (second column) |
+| --prioritycol     | Integer | Priority column number.         | False    |                   |
+| --parentrootid    | Integer | Parent root ID.                 | False    | 0                 |
+| --ignoreheaderrow |         | Ignore first row (header).      | False    |                   |
+| --adddepthcol     |         | Add new column with tree depth. | False    |                   |
 
 ## Example
 
@@ -48,3 +48,7 @@ select plid, layoutId, parentLayoutId, name, hidden_, friendlyURL, priority from
 | 8152195 | 206      | 205            | Dolor | 0        | 2                              |
 | 8220383 | 222      | 205            | Sit   | 1        | 2                              |
 | 7004446 | 74       | 1              | Lorem | 15       | 1                              |
+
+## Improvements
+
+- Add possibility to indicate CSV delimiter by call parameter.
